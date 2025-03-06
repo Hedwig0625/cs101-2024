@@ -1,0 +1,54 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+#define size 5
+
+int main(){
+    int arr1[size] = {1,2,3,4,5};
+    float arr2[size] = {1.1,2.2,3.3,4.4,5.5};
+    char arr3[size] = {'A','B','C','D','E'};
+
+    FILE *file =fopen ("data.bin","wb");
+    if (file == NULL){
+        perror("無法開啟檔案");
+        return 1;
+    }
+    fwrite(arr1,sizeof (int), size ,file);
+    fwrite(arr2,sizeof (float), size ,file);
+    fwrite(arr3,sizeof (char), size ,file);
+    fclose(file);
+
+    int read_arr1[size];
+    float read_arr2[size];
+    char read_arr3[size];
+
+    file = fopen("data.bin", "rb");
+    if (file == NULL){
+        perror("無法開啟檔案");
+        return 1;
+    }
+    fread(read_arr1,sizeof (int), size ,file);
+    fread(read_arr2,sizeof (float), size ,file);
+    fread(read_arr3,sizeof (char), size ,file);
+    fclose(file);
+
+    printf("讀取的整數陣列:");
+    for (int i =0;i<size; i++){
+        printf("%d",read_arr1[i]);
+    }
+    printf("\n");
+
+    printf("讀取的浮點樹陣列:");
+    for (int i =0;i<size; i++){
+        printf("%.1f",read_arr2[i]);
+    }
+    printf("\n");
+
+    printf("讀取的字元陣列:");
+    for (int i =0;i<size; i++){
+        printf("%c",read_arr3[i]);
+    }
+    printf("\n");
+
+    return 0;
+}
