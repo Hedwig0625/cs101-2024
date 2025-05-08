@@ -20,10 +20,25 @@ class car{
     }
 };
 
+class bmw_car : car{
+    public:
+    bmw_car(string a,string b) : car("BMW", b){}
+};
+
+class audi_car : car{
+    public:
+    audi_car(string c,string d) : car("AUDI", d){}
+};
+
+class benz_car : car{
+    public:
+    benz_car(string e,string f) : car("BENZ", f){}
+};
+
 int main(){
-    car bmw_car("BMW","Rear-wheel");
-    car audi_car("AUDI","Front-wheel");
-    car benz_car("BENZ","Rear-wheel");
+    bmw_car a("BMW","Rear-wheel");
+    audi_car b ("AUDI","Front-wheel");
+    benz_car c("BENZ","Rear-wheel");
     
     return 0;
     
